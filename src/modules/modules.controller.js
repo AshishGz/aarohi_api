@@ -1,17 +1,29 @@
-import * as modulesUseCases from './usecases/modules.usecase.js';
+import * as moduleUseCase from './usecases/modules.usecase.js';
+import * as cohortUseCase from "../cohort/usecases/cohort.usecase.js";
 
 
-
-export const getAll = (req, res, next) => {
-    const pageNumber = parseInt(req.query.pageNumber) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const status = req.query.status || null;
-
-    cohortUseCase
-        .getAll(pageNumber, limit, status)
-        .then((data) => res.json({ success: true, ...data }))
+export const add = (req, res, next) => {
+    moduleUseCase
+        .add(req.body)
+        .then(data => res.json({ success: true, data }))
         .catch(next);
 };
+
+export const update = (req, res, next) => {
+    moduleUseCase
+        .update(req.params.id, req.body)
+        .then(data => res.json({ success: true, data }))
+        .catch(next);
+};
+export const remove = (req, res, next) => {
+    moduleUseCase
+        .remove(req.params.id)
+        .then(data => res.json({ success: true, data }))
+        .catch(next);
+};
+
+
+
 
 
 
