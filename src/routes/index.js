@@ -5,6 +5,7 @@ import authRoutes from '../auth/auth.route.js'
 import userRoute from "../user/user.route.js";
 import cohortRoutes from "../cohort/cohort.routes.js";
 import modulesRoutes from "../modules/modules.routes.js";
+import resourceRoutes from "../resource/resource.route.js";
 
 
 const router = express.Router()
@@ -16,6 +17,7 @@ router.use('/auth', authRoutes)
 router.use('/user', userRoute)
 router.use('/cohort', cohortRoutes)
 router.use('/modules', modulesRoutes)
+router.use('/resource', resourceRoutes)
 
 
 export default router;
