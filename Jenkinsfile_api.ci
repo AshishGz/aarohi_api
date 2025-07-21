@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    tools { nodejs "nodejs-v20.16.0" }
+    stages {
+        stage('Checkout') {
+            steps {
+                git credentialsId: '75d779df-8e14-45a7-9d1f-a31d7b6adcde', url: 'https://github.com/AshishGz/aarohi_api.git', branch: 'release/V_1.0.0'
+            }
+        }
+        stage('Write .env File') {
+            steps {
+                writeFile file: '.env', text: '''
+                NODE_ENV=production
+                PORT=3001
+                '''
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Deploy with PM2') {
+            steps {
+                sh '''
+                export PATH=$PATH:/usr/local/bin
+
+                sudo pm2 delete backend || true
+
+                # Start backend with PM2 and make it persist
+                sudo pm2 start npm --name backend -- start
+
+                # Optional: save current PM2 process list
+                sudo pm2 save
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Backend deployed successfully!'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
