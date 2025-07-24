@@ -1,5 +1,4 @@
 import * as moduleUseCase from './usecases/modules.usecase.js';
-import * as cohortUseCase from "../cohort/usecases/cohort.usecase.js";
 
 
 export const add = (req, res, next) => {

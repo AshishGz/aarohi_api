@@ -6,6 +6,7 @@ import userRoute from "../user/user.route.js";
 import cohortRoutes from "../cohort/cohort.routes.js";
 import modulesRoutes from "../modules/modules.routes.js";
 import resourceRoutes from "../resource/resource.route.js";
+import learningPathRoute from "../learningPaths/learningPath.routes.js";
 
 
 const router = express.Router()
@@ -18,6 +19,7 @@ router.use('/user', userRoute)
 router.use('/cohort', cohortRoutes)
 router.use('/modules', modulesRoutes)
 router.use('/resource', resourceRoutes)
+router.use('/learningPath', learningPathRoute)
 
 
 export default router;

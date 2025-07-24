@@ -1,10 +1,10 @@
-import { DBUSER, DBUSERPASSWORD, DBNAME } from "./constant.js";
+import {DBUSER, DBUSERPASSWORD, DBNAME, DBHOST, DBPORT} from "./constant.js";
 
 export default {
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
-    port: 5432,
+    host: DBHOST,
+    port: DBPORT,
     user: DBUSER,
     password: DBUSERPASSWORD,
     database: DBNAME,
